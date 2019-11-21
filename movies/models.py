@@ -10,7 +10,16 @@ class Movie(models.Model):
     audience = models.IntegerField()
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
-    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    genres = models.ManyToManyField(
+        Genre, 
+        related_name='movies',
+        blank=True)
+    like_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="like_movies",
+        blank=True
+    )
 
 class Review(models.Model):
     content = models.CharField(max_length=140)
