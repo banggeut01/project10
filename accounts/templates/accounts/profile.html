@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>{{ account.username }}님의 프로필</h1>
+<div class="container">
+  <h2>작성한 평점</h2>
+  {% for review in account.review_set.all %}
+    <li>
+
+    </li>
+  {% endfor %}
+  <hr>
+  <h2>좋아하는 영화</h2>
+
+  <hr>
+  <h4>팔로워 <b>{{ account.followers.all.count }}</b>  팔로우 <b>{{ account.followings.all.count }}</b> </h4>
+</div>
+{% endblock %}
