@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container">
-  <h1>{{ account.username }}님의 프로필</h1>
+  <h1>{{ account.username }}님의 프로필
+    {% with account.followers.all as followers %}
+    <a href="{% url 'accounts:follow' account.pk %}">
+      {% if user in followers %}
+      팔로우 취소
+      {% else %}
+      팔로우
+      {% endif %}
+    </a>
+    {% endwith %}
+  </h1><br>
   <h2>작성한 평점</h2>
   {% for review in account.review_set.all %}
   <p>내용 : {{ review.content }}, 평점: {{ review.score }}</p>
